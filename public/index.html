@@ -6,28 +6,73 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <!--external text-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300i,700i" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <!--external css style sheet-->
+    <link rel = "stylesheet" type = "text/css" href = "../styles/nav.css" />
+    <link rel = "stylesheet" type = "text/css" href = "../styles/new-tweet.css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
 
     <!-- App JS -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="./scripts/app.js"></script>
+    <script type="text/javascript" src="./scripts/composer-char-counter.js"></script>
+
   </head>
 
   <body>
+        <nav id="nav-bar">
+          <img class="logo" src="/images/bird.png">
+          <span class="header">Tweeter</span>
 
-    <!-- Top nav bar (fixed) -->
-    <nav id="nav-bar">
-      <img class="logo" src="/images/bird.png" width="80px" height="80px">
-      <span class="header">Tweeter</span>
-    </nav>
+          <a id="compose">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            Compose
+          </a>
+        </nav>
 
-    <!-- Page-specific (main) content here -->
-    <main class="container">
-    </main>
+        <!-- Page-specific (main) content here -->
+        <main class="container">
+          <section class="new-tweet">
+            <h2>Compose Tweet</h2>
+            <!--want this submission to be done
+            asynchronously using AJAX,
+            such that the client makes a request to the server
+            while staying on the same page >> jQuery-->
+            <form method="POST" action="/tweets/">
+              <textarea class= "textarea" name="text"
+                placeholder="What are you humming about?"></textarea>
+              <div><input type="submit" value="Tweet">
+              <span class="counter">140</span>
+              <span class="flash-message"></span>
+              </div>
+            </form>
+          </section>
 
+          <section id="tweetscontainer">
+          <!--<article class="tweet"
+  <header class="tweetheader">
+    <img src="../images/bird.png" class="avatar"alt="bird" height="50" width="50">
+    <p class="name">Bill Fields</p>
+    <p class="username">@Mr.Fields</p>
+  </header>
+  <p class="tweet-content">Little tweet here</p>
+  <footer class"foot">
+    <p class="days"> 10 days ago</p>
+    <p class="icon">
+      <i class="fa fa-flag" aria-hidden="true"></i>
+      <i class="fa fa-retweet" aria-hidden="true"></i>
+      <i class="fa fa-heart" aria-hidden="true"></i>
+    </p>
+  </footer>
+</article>-->
+          </section>
+
+        </main>
   </body>
 </html>
