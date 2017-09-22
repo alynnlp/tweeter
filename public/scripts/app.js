@@ -41,19 +41,18 @@ $(document).ready(function() {
     var $pContent = $('<p>').addClass('tweet-content').text(tweetobject.content.text);
     var $foot = $('<footer>').addClass('foot');
 
-
-
-
     var $pDays = $('<p>').addClass('days');
     var daysNum = tweetobject['created_at']
-    console.log(tweetobject['created_at'])
-
     function daysAgo(longNum){
       roundUp = ((Date.now() - longNum) / (1000 * 60 * 60 * 24 ))
-      let days = '<p>' + Math.floor(roundUp) + ' days ago</p>'
+      if (roundUp <= 1) {
+        days = '<p>' + Math.floor(roundUp) + ' day ago</p>'
+      } else {
+        days = '<p>' + Math.floor(roundUp) + ' days ago</p>'
+      }
       $pDays.append(days);
     }
-    console.log(daysAgo(daysNum))
+    daysAgo(daysNum)
 
     var $pIcon = $('<p>').addClass('icon');
     var iconsArray = ['fa-flag','fa-retweet','fa-heart'];
