@@ -5,7 +5,6 @@
  */
  // Test / driver code (temporary). Eventually will get this from the server.
 
-
 $(document).ready(function() {
 
  var tweetData = {
@@ -80,6 +79,12 @@ $(document).ready(function() {
       created_at: Date.now()
     };
 
+    // function daysAgo(givenTime){
+    //   let days = 0
+    //   days = Date.now() - givenTime / (1000 * 60 * 60 * 24)
+    //   return days + 'days ago'
+    // }
+
     if($newInput === "" ){
       $('.flash-message').text('Type Something');
       event.stopPropagation;
@@ -99,7 +104,7 @@ $(document).ready(function() {
       },
       success: function (data) { //if success funcion to print the URL
         console.log('Success: ', data);
-        loadTweets();
+        loadTweets();//load tweets from db
         //you are requesting and handling a JSON response
       }
     })
