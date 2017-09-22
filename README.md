@@ -39,18 +39,18 @@ Tweets are persisted to MongoDB and survive server restart.
 
 # Display (Front-end: HTML5 and CSS3)
 
-Navigation Bar:
+- Navigation Bar:
 
-  Fixed Bar and is displayed above the list of tweets
+  - Fixed Bar and is displayed above the list of tweets
 
-List of Tweets:
+- List of Tweets:
 
   ["how long ago the tweet was created"](https://github.com/alynnlp/tweeter/blob/master/docs/dayscountAndHover.png?raw=true)
 
-  Tweets in reverse-chronological order
+  - Tweets in reverse-chronological order
 
-  Used float, clear-fix, flex, padding to correctly position contents within the Tweeter box
+  - Used float, clear-fix, flex, padding to correctly position contents within the Tweeter box
 
-  footer displays how long ago the tweet was created, on the left
+  - footer displays how long ago the tweet was created, on the left
 
-  "Flag", "Re-tweet" and "Like" icons upon hovering over the tweet, on the right
+  - "Flag", "Re-tweet" and "Like" icons upon hovering over the tweet, on the right
