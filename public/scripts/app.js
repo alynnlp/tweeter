@@ -46,10 +46,11 @@ $(document).ready(function() {
 
     var $pDays = $('<p>').addClass('days');
     var daysNum = tweetobject['created_at']
+    console.log(tweetobject['created_at'])
 
     function daysAgo(longNum){
-      roundUp = longNum / (1000 * 60 * 60 * 24) % 7
-      let days = '<p>' + Math.floor(roundUp) + 'days ago</p>'
+      roundUp = ((Date.now() - longNum) / (1000 * 60 * 60 * 24 ))
+      let days = '<p>' + Math.floor(roundUp) + ' days ago</p>'
       $pDays.append(days);
     }
     console.log(daysAgo(daysNum))
