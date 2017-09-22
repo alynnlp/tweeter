@@ -42,17 +42,15 @@ $(document).ready(function() {
     var $foot = $('<footer>').addClass('foot');
 
 
-
-
-    var $pDays = $('<p>').addClass('days');
     var daysNum = tweetobject['created_at']
+    console.log(daysNum)
+    var $pDays = $('<p>').addClass('days');
 
     function daysAgo(longNum){
-      roundUp = longNum / (1000 * 60 * 60 * 24) % 7
-      let days = '<p>' + Math.floor(roundUp) + 'days ago</p>'
+      days = (Date.now / (1000 * 60 * 60 * 24)) - (longNum / (1000 * 60 * 60 * 24))
       $pDays.append(days);
     }
-    console.log(daysAgo(daysNum))
+    console.log(daysAgo(1461116232227));
 
     var $pIcon = $('<p>').addClass('icon');
     var iconsArray = ['fa-flag','fa-retweet','fa-heart'];
