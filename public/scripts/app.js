@@ -3,7 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
- 
+
 $(document).ready(function() {
  var tweetData = {
    "user": {
@@ -25,7 +25,7 @@ $(document).ready(function() {
   //generate the DOM structure for a tweet with libraries like jQuery.
   function createTweetElement(tweetobject) {
   //$('') > going to search for the tag name in html; $("< >") > going to add an element TAG
-    var $article = $('<article>').addClass('tweet')
+    var $article = $('<article>').addClass('tweet');
     var $header = $('<header>').addClass('tweetheader');
     var $img = $('<img src= " '+ tweetobject.user.avatars.small +'"/>').addClass('avatar');
     var $pName = $('<p>').addClass('name').text(tweetobject.user.name);
@@ -33,25 +33,25 @@ $(document).ready(function() {
     var $pContent = $('<p>').addClass('tweet-content').text(tweetobject.content.text);
     var $foot = $('<footer>').addClass('foot');
     var $pDays = $('<p>').addClass('days');
-    var daysNum = tweetobject['created_at']
+    var daysNum = tweetobject['created_at'];
 
     function daysAgo(longNum){
-      roundUp = ((Date.now() - longNum) / (1000 * 60 * 60 * 24 ))
+      roundUp = ((Date.now() - longNum) / (1000 * 60 * 60 * 24 ));
       if (roundUp <= 1) {
-        days = '<p>' + Math.floor(roundUp) + ' day ago</p>'
+        days = '<p>' + Math.floor(roundUp) + ' day ago</p>';
       } else {
-        days = '<p>' + Math.floor(roundUp) + ' days ago</p>'
+        days = '<p>' + Math.floor(roundUp) + ' days ago</p>';
       }
       $pDays.append(days);
     }
-    daysAgo(daysNum)
+    daysAgo(daysNum);
 
     var $pIcon = $('<p>').addClass('icon');
     var iconsArray = ['fa-flag','fa-retweet','fa-heart'];
     iconsArray.map(function(icon) {
-      var iconList = '<i class="fa' + ' ' + icon + '"></i>'
-      $pIcon.append(iconList)
-    })
+      var iconList = '<i class="fa' + ' ' + icon + '"></i>';
+      $pIcon.append(iconList);
+    });
 
     $article.append($header);
     $header.append($img);
@@ -81,9 +81,9 @@ $(document).ready(function() {
     var newTweet = {
       user: tweetData.user,
       content: {
-        text: $newInput
+        text: $newInput,
       },
-      created_at: Date.now()
+      created_at: Date.now(),
     };
 
     if($newInput === "" ){
@@ -94,7 +94,7 @@ $(document).ready(function() {
       event.stopPropagation;
     } else {
       $('#tweetscontainer').append(createTweetElement(newTweet));
-    }
+    };
 
     //Send form data using post with element id && using AJAX requests
     $.ajax({
@@ -107,8 +107,8 @@ $(document).ready(function() {
       success: function (data) {
         console.log('Success: ', data);
         loadTweets();//load tweets from DB,
-      }
-    })
+      },
+    });
   });
 
   //ajax is async, renderTweets once the REQUEST is done
@@ -121,16 +121,16 @@ $(document).ready(function() {
       success: function (arrayOfTweets) {
         console.log('Success: ', arrayOfTweets);
         renderTweets(arrayOfTweets);
-      }
-    })
-  }
+      },
+    });
+  };
   //forEach of the element in the Array create DOM structure and append
   function renderTweets(tweetarray) {
     tweetarray.forEach(function(tweet){
       var $tweet = createTweetElement(tweet);
       $('#tweetscontainer').prepend($tweet);
-    })
-  }
+    });
+  };
     loadTweets();
 })
 
