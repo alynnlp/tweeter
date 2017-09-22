@@ -6,43 +6,36 @@
  // Test / driver code (temporary). Eventually will get this from the server.
 
 $(document).ready(function() {
-
  var tweetData = {
    "user": {
-     "name": "Aileen",
-     "avatars": {
-       "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
-       "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
-       "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+      "name": "Aileen",
+      "avatars": {
+        "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+        "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+        "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
      },
-     "handle": "@alynnlp"
+      "handle": "@alynnlp"
    },
    "content": {
-     "text": "If I have seen further it is by standing on the shoulders of giants"
+      "text": "If I have seen further it is by standing on the shoulders of giants"
    },
    "created_at": 1461116232227
  }
-
-// tweet objects and then appending each one to the #tweets-container.
-//the renderTweets will need to leverage the createTweetElement function
-//by passing to it the tweet object, using the returned jQuery object by appending it to the #tweets-container section.
-
-  //generate the DOM structure for a tweet,
-  //given a tweet object >> creating markup dynamically with libraries like jQuery.
-  function createTweetElement(tweetobject){
-  //$('') > going to search for the tag name in html
-  //$("< >") > going to add an element TAG
+  //the renderTweets will need to leverage the createTweetElement function
+  //by passing to it the tweet object, using the returned jQuery object by appending it to the #tweets-container
+  //generate the DOM structure for a tweet with libraries like jQuery.
+  function createTweetElement(tweetobject) {
+  //$('') > going to search for the tag name in html; $("< >") > going to add an element TAG
     var $article = $('<article>').addClass('tweet')
-    //append additional DOM elements also created via jQuery to the parent
     var $header = $('<header>').addClass('tweetheader');
     var $img = $('<img src= " '+ tweetobject.user.avatars.small +'"/>').addClass('avatar');
     var $pName = $('<p>').addClass('name').text(tweetobject.user.name);
     var $pUsername = $('<p>').addClass('username').text(tweetobject.user.handle);
     var $pContent = $('<p>').addClass('tweet-content').text(tweetobject.content.text);
     var $foot = $('<footer>').addClass('foot');
-
     var $pDays = $('<p>').addClass('days');
     var daysNum = tweetobject['created_at']
+
     function daysAgo(longNum){
       roundUp = ((Date.now() - longNum) / (1000 * 60 * 60 * 24 ))
       if (roundUp <= 1) {
@@ -69,10 +62,16 @@ $(document).ready(function() {
     $article.append($foot);
     $foot.append($pDays);
     $foot.append($pIcon);
-    // document.getElementsByClassName("tweet").innerHTML = tweetobject; >>will give me an array
     return $article;
   }
 
+  var $compose = $('#compose');
+  var click = $compose.click(function (event) {
+    console.log('Button clicked, performing slide call...');
+    event.preventDefault();
+    $('.new-tweet').slideToggle();
+    $('.textarea').focus();
+  });
 
   var $form = $('form');
   //submit handler to the form from jQUERY
@@ -103,60 +102,40 @@ $(document).ready(function() {
     }
 
     $.ajax({
-      url: '/tweets/', //here im getting another page through AJAX
-      method: 'POST',
+      url: '/tweets/', //here im posting through AJAX
+      method: 'POST', //into the POST request body in the server
       data: {
         user: tweetData.user,
         text: $('form textarea').val(),
       },
-      success: function (data) { //if success funcion to print the URL
+      success: function (data) {
         console.log('Success: ', data);
-        loadTweets();//load tweets from db
-        //you are requesting and handling a JSON response
+        loadTweets();//load tweets from DB,
       }
     })
   });
 
-//click to show and hide before tweetting
-  var $compose = $('#compose');
-  var click = $compose.click(function (event) {
-    console.log('Button clicked, performing slide call...');
-    event.preventDefault();
-    $('.new-tweet').slideToggle();
-    $('.textarea').focus();
-  });//*** how to slide? and autoTYPE!
-
-  // if clicked, slide down
-  // if clicked && not submitted, slide up
-  // if submit, post
-
-  //ajax is async so careful where you renderTweets
+  //ajax is async, renderTweets once the REQUEST is done
   function loadTweets(){
     //jQuery to make a request to /tweets and receive the array of tweets as JSON.
     $("#tweetscontainer").empty();
     $.ajax({
-      url: '/tweets/', //here im getting another page through AJAX
+      url: '/tweets/', //im getting another page through AJAX
       method: 'GET',
-      success: function (arrayOfTweets) { //if success funcion to print the URL
+      success: function (arrayOfTweets) {
         console.log('Success: ', arrayOfTweets);
         renderTweets(arrayOfTweets);
-        //you are requesting and handling a JSON response
       }
     })
   }
-
+  //forEach of the element in the Array create DOM structure and append
   function renderTweets(tweetarray) {
     tweetarray.forEach(function(tweet){
       var $tweet = createTweetElement(tweet);
       $('#tweetscontainer').prepend($tweet);
     })
   }
-    //renderTweets function defined which can take in this array of objects,render them to the DOM,
-    //so your success callback function will simply call up the renderTweets,
-    //passing it the response from the AJAX request.
-
     loadTweets();
 })
 
-//to prevent the existing form submission,submit the form data using Ajax.
-//will be sent to the server in the POST request body.
+//document.getElementsByClassName("tweet").innerHTML = tweetobject; >>will give me an array
