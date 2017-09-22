@@ -3,8 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
- // Test / driver code (temporary). Eventually will get this from the server.
-
+ 
 $(document).ready(function() {
  var tweetData = {
    "user": {
@@ -77,12 +76,8 @@ $(document).ready(function() {
   //submit handler to the form from jQUERY
   $form.submit(function (event) {
     console.log('Button clicked, performing ajax call...');
-    event.preventDefault(); //stop form from submitting normally, will stay in the same page
-    //get the action attribute from the <form action=""> element
-    //Send form data using post with element id && using AJAX requests
-    //var posting = $.post( url, $('textarea').val().serialize() );
+    event.preventDefault(); //stop form from submitting normally > will stay in the same page
     var $newInput = $('textarea').val();
-    //debugger;
     var newTweet = {
       user: tweetData.user,
       content: {
@@ -101,6 +96,7 @@ $(document).ready(function() {
       $('#tweetscontainer').append(createTweetElement(newTweet));
     }
 
+    //Send form data using post with element id && using AJAX requests
     $.ajax({
       url: '/tweets/', //here im posting through AJAX
       method: 'POST', //into the POST request body in the server
