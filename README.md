@@ -20,11 +20,11 @@ A simplified Single Page App (SPA) which is an AJAX-based Twitter clone that use
 
   1. When a user clicks the Compose button...
 
-<img src="./docs/composeBox.png" alt="composeBox" width="490" height="490">
+<img src="./docs/composeBox.png" alt="composeBox" width="1000" height="500">
       ["Auto-focused text area"](https://github.com/alynnlp/tweeter/blob/master/docs/composeBox.png?raw=true)
 
 
-<img src="./docs/toggleBox.png" alt="composeBox" width="490" height="490">
+<img src="./docs/toggleBox.png" alt="composeBox" width="1000" height="500">
 
       ["The transition between 'shown' and 'hidden' states of Tweet Box is animated"](https://github.com/alynnlp/tweeter/blob/master/docs/toggleBox.png?raw=true)
 
@@ -34,7 +34,7 @@ A simplified Single Page App (SPA) which is an AJAX-based Twitter clone that use
 
   3. Character Counter
 
-  <img src="./docs/characterCount.png" alt="composeBox" width=490 height="490">
+  <img src="./docs/characterCount.png" alt="composeBox" width=1000 height="500">
 
       ["Show how many characters a user may still type"](https://github.com/alynnlp/tweeter/blob/master/docs/characterCount.png?raw=true)
       Condition applied when characters exceeded limit or no input before submitting
@@ -48,7 +48,7 @@ A simplified Single Page App (SPA) which is an AJAX-based Twitter clone that use
 
 - List of Tweets:
 
-<img src="./docs/dayscountAndHover.png" alt="composeBox" width="490" height="490">
+<img src="./docs/dayscountAndHover.png" alt="composeBox" width="1000" height="500">
 
   ["How long ago the tweet was created and Multiple hover effect"](https://github.com/alynnlp/tweeter/blob/master/docs/dayscountAndHover.png?raw=true)
 
